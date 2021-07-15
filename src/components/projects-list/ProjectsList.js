@@ -1,3 +1,4 @@
+import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -40,9 +41,9 @@ function ProjectsList({ posts }) {
                         backgroundColor: '#ccc',
                     }}
                 >
-                    <div>
+                    <Link to={post.node.frontmatter.slug}>
                         {i}. {post.node.frontmatter.title}
-                    </div>
+                    </Link>
                 </div>
             ))}
         </ProjectsListContainer>
