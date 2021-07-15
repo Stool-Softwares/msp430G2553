@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Roboto:wght@400;500&display=swap');
 
 * {
     margin: 0;
@@ -12,4 +13,8 @@ html,
 body {
     height: 100%;
     width: 100%;
+}
+
+body {
+    overflow-y: hidden;
 }

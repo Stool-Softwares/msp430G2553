@@ -4,10 +4,13 @@ import MSPImage from '../../assets/mspimage.jpg'
 
 const ProjectContainer = styled.div`
     width: calc(100% - 400px);
+    height: calc(100vh - 70px);
+    overflow-y: scroll;
 `
 
 const MarkdownContent = styled.div`
-    padding: 30px 0 0 30px;
+    width: 1000px;
+    margin: auto;
 
     * {
         margin: 0;
@@ -23,10 +26,12 @@ const MarkdownContent = styled.div`
         font-size: 35px;
         text-decoration: underline;
         margin-top: 20px !important;
+        font-weight: 500;
     }
 
     h3 {
         font-size: 30px;
+        font-weight: 300;
     }
 
     h4 {
@@ -40,21 +45,48 @@ const MarkdownContent = styled.div`
     h5,
     h6 {
         font-family: 'Roboto';
+        color: #383838;
+        margin-top: 40px;
     }
 
     p {
-        width: 1200px;
         font-size: 20px;
         text-align: justify;
         font-family: 'Roboto';
+        color: #545454;
 
         span {
             a {
                 img {
-                    width: 1000px !important;
-                    height: auto !important;
                     border: 4px solid #222;
                 }
+            }
+        }
+    }
+
+    pre {
+        width: 900px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        * {
+            font-family: 'Oxygen Mono' !important;
+        }
+    }
+
+    blockquote {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        width: 900px;
+        background-color: #4a4a4a;
+        margin-bottom: -10px;
+        padding: 5px 15px 5px 15px;
+
+        p {
+            color: #eee !important;
+            font-size: 18px;
+
+            a {
+                color: #c3c3c3;
             }
         }
     }

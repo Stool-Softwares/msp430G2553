@@ -23,6 +23,12 @@ module.exports = {
                         resolve: `gatsby-remark-images`,
                         options: {},
                     },
+                    {
+                        resolve: `gatsby-remark-vscode`,
+                        options: {
+                            theme: 'Dark+ (default dark)',
+                        },
+                    },
                 ],
             },
         },
