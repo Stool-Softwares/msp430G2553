@@ -52,53 +52,57 @@ function ProjectContent({ html, frontmatter }) {
                 ></MarkdownContent>
             )}
 
-            <FooterContainer>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'column',
-                        color: '#545454',
-                    }}
-                >
-                    <div>
-                        Found a typo?{' '}
-                        <button
-                            style={{
-                                border: 'none',
-                                backgroundColor: '#222',
-                                color: '#eee',
-                                padding: 5,
-                                borderRadius: 5,
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                            }}
-                        >
-                            Edit this page
-                        </button>
-                    </div>
-                    <div style={{ marginTop: 30 }}>
-                        <a
-                            href='https://github.com/Stool-Softwares/msp430G2553'
-                            target='_blank'
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <img
+            {frontmatter.slug !== '/projects' && (
+                <FooterContainer>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'column',
+                            color: '#545454',
+                        }}
+                    >
+                        <div>
+                            Found a typo?{' '}
+                            <a
                                 style={{
-                                    width: 35,
+                                    border: 'none',
+                                    backgroundColor: '#222',
+                                    color: '#eee',
+                                    padding: 5,
+                                    borderRadius: 5,
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    fontSize: 15,
                                 }}
-                                src={GitImage}
-                            ></img>
-                        </a>
-                        <p style={{ color: '#545454' }}>Stool softwares</p>
+                                href='https://github.com/Stool-Softwares/msp430G2553'
+                            >
+                                Edit this page
+                            </a>
+                        </div>
+                        <div style={{ marginTop: 30 }}>
+                            <a
+                                href='https://github.com/Stool-Softwares'
+                                target='_blank'
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <img
+                                    style={{
+                                        width: 35,
+                                    }}
+                                    src={GitImage}
+                                ></img>
+                            </a>
+                            <p style={{ color: '#545454' }}>Stool softwares</p>
+                        </div>
                     </div>
-                </div>
-            </FooterContainer>
+                </FooterContainer>
+            )}
         </ProjectContainer>
     )
 }

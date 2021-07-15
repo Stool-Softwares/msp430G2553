@@ -9,6 +9,21 @@ const ProjectsListContainer = styled.div`
     overflow-y: scroll;
 `
 
+const TitleWrapper = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 40px 0 40px;
+    background-color: #ccc;
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+`
+
 function ProjectsList({ posts }) {
     posts = posts.filter(function removeDefaultPage(post) {
         return post.node.frontmatter.slug !== '/projects'
@@ -29,22 +44,11 @@ function ProjectsList({ posts }) {
             </div>
 
             {posts.map((post, i) => (
-                <div
-                    key={post.node.id}
-                    style={{
-                        width: '100%',
-                        height: '30px',
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
-                        padding: '0 40px 0 40px',
-                        backgroundColor: '#ccc',
-                    }}
-                >
+                <TitleWrapper key={post.node.id}>
                     <Link to={post.node.frontmatter.slug}>
                         {i}. {post.node.frontmatter.title}
                     </Link>
-                </div>
+                </TitleWrapper>
             ))}
         </ProjectsListContainer>
     )
