@@ -8,7 +8,11 @@ const ProjectsListContainer = styled.div`
     overflow-y: scroll;
 `
 
-function ProjectsList() {
+function ProjectsList({ posts }) {
+    posts = posts.filter(function removeDefaultPage(post) {
+        return post.node.frontmatter.slug !== '/projects'
+    })
+
     return (
         <ProjectsListContainer>
             <div
@@ -22,6 +26,25 @@ function ProjectsList() {
             >
                 List of projects
             </div>
+
+            {posts.map((post, i) => (
+                <div
+                    key={post.node.id}
+                    style={{
+                        width: '100%',
+                        height: '30px',
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        padding: '0 40px 0 40px',
+                        backgroundColor: '#ccc',
+                    }}
+                >
+                    <div>
+                        {i}. {post.node.frontmatter.title}
+                    </div>
+                </div>
+            ))}
         </ProjectsListContainer>
     )
 }

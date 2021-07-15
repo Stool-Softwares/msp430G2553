@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import Navbar from '../components/navbar/Navbar'
@@ -17,11 +17,14 @@ const ProjectsContent = styled.div`
 
 function Projects({ data }) {
     let markdown = data.markdownRemark
+    let posts = data.allMarkdownRemark.edges
+    console.log(data)
+
     return (
         <App>
             <Navbar />
             <ProjectsContent>
-                <ProjectsList />
+                <ProjectsList posts={posts} />
                 <ProjectContent
                     html={markdown.html}
                     frontmatter={markdown.frontmatter}
@@ -31,14 +34,26 @@ function Projects({ data }) {
     )
 }
 
-export const fetchMarkdown = graphql`
-    query ($slug: StringQueryOperatorInput) {
-        markdownRemark(frontmatter: { slug: $slug }) {
-            frontmatter {
-                title
-                slug
-            }
+export const fetchData = graphql`
+    query ($id: String) {
+        markdownRemark(id: { eq: $id }) {
             html
+            frontmatter {
+                slug
+                title
+            }
+        }
+        allMarkdownRemark {
+            edges {
+                node {
+                    id
+                    frontmatter {
+                        title
+                        slug
+                    }
+                    html
+                }
+            }
         }
     }
 `

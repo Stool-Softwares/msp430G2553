@@ -41,16 +41,6 @@ const CentralBox = styled.div`
     }
 `
 
-const BoxShadow = styled.div`
-    position: absolute;
-    left: calc(50% - 380px);
-    top: 190px;
-    width: 800px;
-    height: 350px;
-    background-color: black;
-    z-index: -1;
-`
-
 const BoxContainer = styled.div`
     display: flex;
     width: 100%;
