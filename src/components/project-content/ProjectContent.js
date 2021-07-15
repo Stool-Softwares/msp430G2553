@@ -5,7 +5,7 @@ const ProjectContainer = styled.div`
     width: calc(100% - 400px);
 `
 
-function ProjectContent() {
+function ProjectContent({}) {
     return <ProjectContainer></ProjectContainer>
 }
 

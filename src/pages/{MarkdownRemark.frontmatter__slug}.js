@@ -14,7 +14,7 @@ const ProjectsContent = styled.div`
     justify-content: center;
 `
 
-function Projects() {
+function Projects({}) {
     return (
         <App>
             <Navbar />
