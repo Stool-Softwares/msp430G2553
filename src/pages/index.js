@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import Arrow from '../assets/arrow.png'
+import Button from '../components/button/Button'
 import Navbar from '../components/navbar/Navbar'
 import '../styles/global.module.css'
 
@@ -36,6 +38,13 @@ const BoxShadow = styled.div`
     z-index: -1;
 `
 
+const BoxContainer = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 80px;
+`
+
 function IndexPage() {
     return (
         <App>
@@ -52,6 +61,9 @@ function IndexPage() {
                 </CentralBox>
                 <BoxShadow></BoxShadow>
             </PageContainer>
+            <BoxContainer>
+                <Button icon={Arrow}>Explore Projects</Button>
+            </BoxContainer>
         </App>
     )
 }

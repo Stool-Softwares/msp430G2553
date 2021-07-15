@@ -7,6 +7,7 @@ import {
     NavList,
 } from './navbar.styles'
 import Icon from '../../assets/mspicon.png'
+import { Link } from 'gatsby'
 
 function Navbar() {
     return (
@@ -16,10 +17,18 @@ function Navbar() {
                     <img src={Icon}></img>
                 </IconContainer>
                 <NavList>
-                    <ListItem>Home</ListItem>
-                    <ListItem>Projects</ListItem>
-                    <ListItem>Contributers</ListItem>
-                    <ListItem>About</ListItem>
+                    <ListItem>
+                        <Link to='/'>Home</Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link to='/projects'>Projects</Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link to='/contributers'>Contributers</Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link to='/about'>About</Link>
+                    </ListItem>
                 </NavList>
             </NavbarContent>
         </NavbarContainer>

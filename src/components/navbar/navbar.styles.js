@@ -38,7 +38,12 @@ export const ListItem = styled.li`
     margin-right: 50px;
     cursor: pointer;
 
-    &:hover {
-        text-decoration: underline;
+    a {
+        text-decoration: none;
+        color: #222;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 `
