@@ -26,6 +26,19 @@ const CentralBox = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    transition: all 1s ease-in;
+
+    &::before {
+        content: '';
+        width: 790px;
+        height: 350px;
+        position: absolute;
+        background-color: #222;
+        z-index: -1;
+        top: 5px;
+        left: 10px;
+    }
 `
 
 const BoxShadow = styled.div`
@@ -59,7 +72,6 @@ function IndexPage() {
                     </p>
                     <p style={{ fontSize: '20px' }}>(MSP430G2553)</p>
                 </CentralBox>
-                <BoxShadow></BoxShadow>
             </PageContainer>
             <BoxContainer>
                 <Button icon={Arrow}>Explore Projects</Button>

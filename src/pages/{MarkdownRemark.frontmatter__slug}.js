@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import Navbar from '../components/navbar/Navbar'
@@ -14,16 +15,32 @@ const ProjectsContent = styled.div`
     justify-content: center;
 `
 
-function Projects({}) {
+function Projects({ data }) {
+    let markdown = data.markdownRemark
     return (
         <App>
             <Navbar />
             <ProjectsContent>
                 <ProjectsList />
-                <ProjectContent />
+                <ProjectContent
+                    html={markdown.html}
+                    frontmatter={markdown.frontmatter}
+                />
             </ProjectsContent>
         </App>
     )
 }
+
+export const fetchMarkdown = graphql`
+    query ($slug: StringQueryOperatorInput) {
+        markdownRemark(frontmatter: { slug: $slug }) {
+            frontmatter {
+                title
+                slug
+            }
+            html
+        }
+    }
+`
 
 export default Projects
