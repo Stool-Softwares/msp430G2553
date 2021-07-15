@@ -21,7 +21,7 @@ YT Video here
 
 ### Code
 
-> Get complete project at [@Stool Softwares](https://github.com/stoolsoftwares)
+> Get complete project at [@Stool Softwares](https://github.com/Stool-Softwares)
 
 ```c
 // car-parking-system.c
