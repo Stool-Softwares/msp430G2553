@@ -1,6 +1,10 @@
 ---
 title: 'Car Parking System'
 slug: '/projects/car-parking-system'
+date: '2021-07-16'
+author: 'Aditya Raj Kumawat'
+social: 'https://instagram.com/edydee'
+socialName: 'edydee'
 ---
 
 ## Car Parking System(#adityarajkumawat)
