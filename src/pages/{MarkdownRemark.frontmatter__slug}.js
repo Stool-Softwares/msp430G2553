@@ -5,6 +5,7 @@ import Navbar from '../components/navbar/Navbar'
 import ProjectContent from '../components/project-content/ProjectContent'
 import ProjectsList from '../components/projects-list/ProjectsList'
 import SEO from '../components/seo/SEO'
+import '../styles/global.module.css'
 
 const App = styled.div`
     width: 100%;

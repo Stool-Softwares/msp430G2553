@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 import Navbar from '../components/navbar/Navbar'
+import '../styles/global.module.css'
 
 function Contributers({ data }) {
     let blogMetaData = data.allMarkdownRemark.edges

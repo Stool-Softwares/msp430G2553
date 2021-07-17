@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Navbar from '../components/navbar/Navbar'
+import '../styles/global.module.css'
 
 function About() {
     return (
