@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Arrow from '../assets/arrow.png'
 import Button from '../components/button/Button'
 import Navbar from '../components/navbar/Navbar'
@@ -28,7 +28,36 @@ const CentralBox = styled.div`
     justify-content: center;
     flex-direction: column;
     position: relative;
-    transition: all 1s ease-in;
+
+    p {
+        transition: all 0.3s ease-in;
+        font-size: 70px;
+    }
+
+    @media only screen and (max-width: 1500px) {
+        width: 700px;
+        height: 300px;
+        p {
+            font-size: 70px;
+        }
+    }
+
+    @media only screen and (max-width: 840px) {
+        width: 600px;
+        height: 250px;
+        p {
+            font-size: 60px;
+        }
+    }
+
+    @media only screen and (max-width: 640px) {
+        border-width: 5px;
+        width: 85%;
+        height: 200px;
+        p {
+            font-size: 35px;
+        }
+    }
 
     &::before {
         content: '';
@@ -39,6 +68,15 @@ const CentralBox = styled.div`
         z-index: -1;
         top: 5px;
         left: 10px;
+
+        @media only screen and (max-width: 1500px) {
+            width: 700px;
+            height: 300px;
+        }
+
+        @media only screen and (max-width: 840px) {
+            display: none;
+        }
     }
 `
 
@@ -56,12 +94,8 @@ function IndexPage() {
             <Navbar />
             <PageContainer>
                 <CentralBox>
-                    <p style={{ fontSize: '70px', fontWeight: 'bold' }}>
-                        MSP 430
-                    </p>
-                    <p style={{ fontSize: '70px', fontWeight: 'bold' }}>
-                        Lunchbox Projects
-                    </p>
+                    <p style={{ fontWeight: 'bold' }}>MSP 430</p>
+                    <p style={{ fontWeight: 'bold' }}>Lunchbox Projects</p>
                     <p style={{ fontSize: '20px' }}>(MSP430G2553)</p>
                 </CentralBox>
             </PageContainer>
