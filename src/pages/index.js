@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Arrow from '../assets/arrow.png'
 import Button from '../components/button/Button'
 import Navbar from '../components/navbar/Navbar'
+import SEO from '../components/seo/SEO'
 import '../styles/global.module.css'
 
 const App = styled.div`
@@ -51,6 +52,7 @@ const BoxContainer = styled.div`
 function IndexPage() {
     return (
         <App>
+            <SEO title='MSP430 Lunchbox Projects' />
             <Navbar />
             <PageContainer>
                 <CentralBox>

@@ -3,7 +3,6 @@ import React from 'react'
 import Navbar from '../components/navbar/Navbar'
 
 function Contributers({ data }) {
-    console.log(data)
     let blogMetaData = data.allMarkdownRemark.edges
     blogMetaData = blogMetaData.filter(function removeDefault(meta) {
         return meta.node.frontmatter.social !== null

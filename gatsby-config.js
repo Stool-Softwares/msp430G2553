@@ -1,7 +1,9 @@
 module.exports = {
     siteMetadata: {
-        siteUrl: 'https://www.yourdomain.tld',
         title: 'msp430',
+        author: 'stool softwares',
+        description: 'Projects on MSP430 lunchbox',
+        siteUrl: 'http://msp430.edydee.xyz',
     },
     plugins: [
         'gatsby-plugin-styled-components',

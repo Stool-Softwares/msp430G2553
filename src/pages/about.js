@@ -21,6 +21,7 @@ function About() {
                         <a
                             href='https://github.com/Stool-Softwares'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             @stool_softwares
                         </a>

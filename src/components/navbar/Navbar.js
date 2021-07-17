@@ -14,7 +14,7 @@ function Navbar() {
         <NavbarContainer>
             <NavbarContent>
                 <IconContainer>
-                    <img src={Icon}></img>
+                    <img src={Icon} alt='msp430'></img>
                 </IconContainer>
                 <NavList>
                     <ListItem>

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Navbar from '../components/navbar/Navbar'
 import ProjectContent from '../components/project-content/ProjectContent'
 import ProjectsList from '../components/projects-list/ProjectsList'
+import SEO from '../components/seo/SEO'
 
 const App = styled.div`
     width: 100%;
@@ -18,10 +19,10 @@ const ProjectsContent = styled.div`
 function Projects({ data }) {
     let markdown = data.markdownRemark
     let posts = data.allMarkdownRemark.edges
-    console.log(data)
 
     return (
         <App>
+            <SEO title={markdown.frontmatter.title} />
             <Navbar />
             <ProjectsContent>
                 <ProjectsList posts={posts} />

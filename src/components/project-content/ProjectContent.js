@@ -24,7 +24,7 @@ function ProjectContent({ html, frontmatter }) {
                     <img
                         style={{ transform: 'rotate(-90deg)' }}
                         src={MSPImage}
-                        alt=''
+                        alt='msp430'
                     />
                     <div
                         style={{
@@ -90,12 +90,14 @@ function ProjectContent({ html, frontmatter }) {
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                 }}
+                                rel='noreferrer'
                             >
                                 <img
                                     style={{
                                         width: 35,
                                     }}
                                     src={GitImage}
+                                    alt='go to github'
                                 ></img>
                             </a>
                             <p style={{ color: '#545454' }}>Stool softwares</p>

@@ -5,7 +5,7 @@ function Button({ children, icon }) {
     return (
         <ButtonContainer>
             {children}
-            <img style={{ marginLeft: 20 }} src={icon}></img>
+            <img style={{ marginLeft: 20 }} src={icon} alt='arrow'></img>
         </ButtonContainer>
     )
 }
