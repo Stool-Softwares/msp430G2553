@@ -25,6 +25,7 @@ function ProjectContent({ html, frontmatter }) {
                         style={{ transform: 'rotate(-90deg)' }}
                         src={MSPImage}
                         alt='msp430'
+                        className='default-img'
                     />
                     <div
                         style={{
@@ -32,6 +33,7 @@ function ProjectContent({ html, frontmatter }) {
                             color: '#00000040',
                             marginTop: -100,
                         }}
+                        className='default-content'
                     >
                         <p>Explore MSP430 lunchbox projects</p>
                         <p

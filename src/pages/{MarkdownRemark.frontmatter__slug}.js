@@ -26,6 +26,9 @@ const App = styled.div`
             @media only screen and (max-width: 1480px) {
                 width: 750px;
             }
+            @media only screen and (max-width: 820px) {
+                width: 90%;
+            }
         }
 
         @media only screen and (max-width: 1480px) {
@@ -50,7 +53,7 @@ function Projects({ data, path }) {
     return (
         <App>
             <SEO title={markdown.frontmatter.title} />
-            <Navbar path={path} />
+            <Navbar path={path} posts={posts} />
             <ProjectsContent>
                 <ProjectsList posts={posts} />
                 <ProjectContent

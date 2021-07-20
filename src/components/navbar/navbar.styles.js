@@ -63,6 +63,16 @@ export const NavListWrapper = styled.div`
             background-color: #eee;
         }
     }
+
+    .backdrop {
+        position: absolute;
+        left: 0;
+        top: 70px;
+        background-color: #00000020;
+        width: 100vw;
+        height: calc(100vh - 70px);
+        z-index: 1;
+    }
 `
 
 const dropIn = keyframes`
@@ -144,7 +154,8 @@ export const ProjectsMenu = styled.div`
     position: absolute;
     background-color: #fff;
     top: 72px;
-    width: 25%;
+    width: 30%;
+    min-width: 300px;
     height: calc(100vh - 70px);
     left: 0;
     display: flex;

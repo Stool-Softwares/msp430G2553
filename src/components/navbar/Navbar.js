@@ -14,10 +14,16 @@ import { Link } from 'gatsby'
 import { useMediaQuery } from '@material-ui/core'
 import HamMenu from '../../assets/ham.png'
 
-function Navbar({ path }) {
+function Navbar({ path, posts }) {
     const [open, isOpen] = useState(false)
     const matches = useMediaQuery('(min-width:840px)')
     const matchesProjects = useMediaQuery('(min-width:1140px)')
+
+    if (posts) {
+        posts = posts.filter(function removeDefaultPage(post) {
+            return post.node.frontmatter.slug !== '/projects'
+        })
+    }
 
     let linksList = (
         <Fragment>
@@ -63,6 +69,12 @@ function Navbar({ path }) {
                     src={HamMenu}
                     alt='menu'
                 />
+                {open && (
+                    <div
+                        className='backdrop'
+                        onClick={() => isOpen((prev) => !prev)}
+                    ></div>
+                )}
             </NavListWrapper>
             <Fragment>
                 {open ? (
@@ -97,7 +109,20 @@ function Navbar({ path }) {
                             >
                                 Projects
                             </div>
-                            {linksList}
+                            {posts &&
+                                posts.map((post) => (
+                                    <div
+                                        key={post.node.id}
+                                        style={{
+                                            padding: '10px 40px 10px 40px',
+                                            borderBottom: '1px solid #eee',
+                                        }}
+                                    >
+                                        <a href={post.node.frontmatter.slug}>
+                                            {post.node.frontmatter.title}
+                                        </a>
+                                    </div>
+                                ))}
                         </div>
                     </ProjectsMenu>
                 ) : (

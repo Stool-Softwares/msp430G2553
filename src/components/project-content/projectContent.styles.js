@@ -4,6 +4,28 @@ export const ProjectContainer = styled.div`
     width: calc(100% - 400px);
     height: calc(100vh - 70px);
     overflow-y: scroll;
+
+    div {
+        .default-img {
+            @media only screen and (max-width: 820px) {
+                height: 500px;
+            }
+
+            @media only screen and (max-width: 500px) {
+                height: 350px;
+            }
+        }
+
+        .default-content {
+            width: 70%;
+            text-align: center;
+            @media only screen and (max-width: 820px) {
+                p {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
 `
 
 export const MarkdownContent = styled.div`
@@ -18,6 +40,9 @@ export const MarkdownContent = styled.div`
 
     h1 {
         font-size: 40px;
+        @media only screen and (max-width: 820px) {
+            font-weight: 20px;
+        }
     }
 
     h2 {
@@ -25,11 +50,28 @@ export const MarkdownContent = styled.div`
         text-decoration: underline;
         margin-top: 20px !important;
         font-weight: 500;
+        @media only screen and (max-width: 820px) {
+            font-size: 30px;
+        }
+
+        @media only screen and (max-width: 490px) {
+            font-size: 25px;
+        }
     }
 
     h3 {
         font-size: 30px;
         font-weight: 300;
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+        @media only screen and (max-width: 820px) {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        @media only screen and (max-width: 490px) {
+            font-size: 15px;
+        }
     }
 
     h4 {
@@ -52,6 +94,12 @@ export const MarkdownContent = styled.div`
         text-align: justify;
         font-family: 'Roboto';
         color: #545454;
+        @media only screen and (max-width: 820px) {
+            font-size: 18px;
+        }
+        @media only screen and (max-width: 490px) {
+            font-size: 16px;
+        }
 
         span {
             a {
@@ -72,6 +120,13 @@ export const MarkdownContent = styled.div`
         @media only screen and (max-width: 1480px) {
             width: 750px;
         }
+        @media only screen and (max-width: 820px) {
+            margin: auto;
+            width: 100%;
+        }
+        @media only screen and (max-width: 490px) {
+            font-size: 13px;
+        }
     }
 
     blockquote {
@@ -82,16 +137,32 @@ export const MarkdownContent = styled.div`
         margin-bottom: -10px;
         padding: 5px 15px 5px 15px;
 
+        @media only screen and (max-width: 490px) {
+            padding: 10px;
+        }
+
         @media only screen and (max-width: 1480px) {
             width: 750px;
+        }
+        @media only screen and (max-width: 820px) {
+            margin: auto;
+            width: 100%;
         }
 
         p {
             color: #eee !important;
             font-size: 18px;
+            margin: 0;
+            padding: 0;
+            @media only screen and (max-width: 490px) {
+                font-size: 16px;
+            }
 
             a {
                 color: #c3c3c3;
+                @media only screen and (max-width: 490px) {
+                    font-size: 16px;
+                }
             }
         }
     }
