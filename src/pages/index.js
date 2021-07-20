@@ -100,7 +100,7 @@ function IndexPage() {
                 </CentralBox>
             </PageContainer>
             <BoxContainer>
-                <Button icon={Arrow}>Explore Projects</Button>
+                <Button>Explore Projects</Button>
             </BoxContainer>
         </App>
     )

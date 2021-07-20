@@ -1,7 +1,28 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import styled from 'styled-components'
 import Navbar from '../components/navbar/Navbar'
 import '../styles/global.module.css'
+
+const ContributersList = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 5% 0 5%;
+
+    h2 {
+        @media only screen and (max-width: 700px) {
+            font-size: 35px !important;
+        }
+    }
+
+    ul li {
+        font-size: 18px !important;
+    }
+`
 
 function Contributers({ data }) {
     let blogMetaData = data.allMarkdownRemark.edges
@@ -12,16 +33,8 @@ function Contributers({ data }) {
     return (
         <div>
             <Navbar />
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 40,
-                    flexDirection: 'column',
-                }}
-            >
-                <h1 style={{ fontSize: 45 }}>Contributers of these projects</h1>
+            <ContributersList>
+                <h2 style={{ fontSize: 45 }}>Contributers</h2>
                 <ul
                     style={{
                         listStyle: 'none',
@@ -45,7 +58,7 @@ function Contributers({ data }) {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </ContributersList>
         </div>
     )
 }

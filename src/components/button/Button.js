@@ -1,13 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Button({ children, icon }) {
-    return (
-        <ButtonContainer>
-            {children}
-            <img style={{ marginLeft: 20 }} src={icon} alt='arrow'></img>
-        </ButtonContainer>
-    )
+function Button({ children }) {
+    return <ButtonContainer>{children}</ButtonContainer>
 }
 
 const ButtonContainer = styled.div`
