@@ -30,7 +30,7 @@ function ProjectsList({ posts }) {
     })
 
     return (
-        <ProjectsListContainer>
+        <ProjectsListContainer className='projects-list'>
             <div
                 style={{
                     fontSize: 30,

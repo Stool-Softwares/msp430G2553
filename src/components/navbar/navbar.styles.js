@@ -127,3 +127,55 @@ export const OpenedMenu = styled.div`
         animation: ${slideIn} 0.3s ease-in 0.4s;
     }
 `
+
+const sideFromSide = keyframes`
+from {
+    left: -25%;
+    opacity: 0;
+}
+to {
+    left: 0px;
+    opacity: 1;
+}
+`
+
+export const ProjectsMenu = styled.div`
+    list-style: none;
+    position: absolute;
+    background-color: #fff;
+    top: 72px;
+    width: 25%;
+    height: calc(100vh - 70px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    box-shadow: 0px 4px 4px 3px #00000030;
+    animation: ${sideFromSide} 0.3s ease-in;
+
+    li {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+        opacity: 0;
+        animation-fill-mode: forwards !important;
+        padding: 0px 40px 0px 40px;
+    }
+
+    .home {
+        animation: ${slideIn} 0.3s ease-in 0s;
+    }
+
+    .projects {
+        animation: ${slideIn} 0.3s ease-in 0.1s;
+    }
+
+    .contri {
+        animation: ${slideIn} 0.3s ease-in 0.3s;
+    }
+
+    .about {
+        animation: ${slideIn} 0.3s ease-in 0.4s;
+    }
+`

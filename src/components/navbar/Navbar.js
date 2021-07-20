@@ -7,15 +7,17 @@ import {
     NavList,
     NavListWrapper,
     OpenedMenu,
+    ProjectsMenu,
 } from './navbar.styles'
 import Icon from '../../assets/mspicon.png'
 import { Link } from 'gatsby'
 import { useMediaQuery } from '@material-ui/core'
 import HamMenu from '../../assets/ham.png'
 
-function Navbar() {
+function Navbar({ path }) {
     const [open, isOpen] = useState(false)
     const matches = useMediaQuery('(min-width:840px)')
+    const matchesProjects = useMediaQuery('(min-width:1140px)')
 
     let linksList = (
         <Fragment>
@@ -34,31 +36,93 @@ function Navbar() {
         </Fragment>
     )
 
+    let homeSmallScreenMenu = (
+        <Fragment>
+            <NavListWrapper>
+                <img
+                    onClick={() => isOpen((prev) => !prev)}
+                    src={HamMenu}
+                    alt='menu'
+                />
+            </NavListWrapper>
+            <Fragment>
+                {open ? (
+                    <OpenedMenu>{linksList}</OpenedMenu>
+                ) : (
+                    <div style={{ display: 'none' }}></div>
+                )}
+            </Fragment>
+        </Fragment>
+    )
+
+    let projectsSmallScreenMenu = (
+        <Fragment>
+            <NavListWrapper>
+                <img
+                    onClick={() => isOpen((prev) => !prev)}
+                    src={HamMenu}
+                    alt='menu'
+                />
+            </NavListWrapper>
+            <Fragment>
+                {open ? (
+                    <ProjectsMenu>
+                        <div style={{ width: '100%' }}>
+                            <div
+                                style={{
+                                    backgroundColor: '#eee',
+                                    height: 40,
+                                    display: 'flex',
+                                    padding: '0 40px 0 40px',
+                                    alignItems: 'center',
+                                    fontWeight: 'bold',
+                                    marginBottom: 10,
+                                }}
+                            >
+                                Menu
+                            </div>
+                            {linksList}
+                        </div>
+                        <div style={{ width: '100%' }}>
+                            <div
+                                style={{
+                                    backgroundColor: '#eee',
+                                    height: 40,
+                                    display: 'flex',
+                                    padding: '0 40px 0 40px',
+                                    alignItems: 'center',
+                                    fontWeight: 'bold',
+                                    marginBottom: 10,
+                                }}
+                            >
+                                Projects
+                            </div>
+                            {linksList}
+                        </div>
+                    </ProjectsMenu>
+                ) : (
+                    <div style={{ display: 'none' }}></div>
+                )}
+            </Fragment>
+        </Fragment>
+    )
+
     return (
         <NavbarContainer>
             <NavbarContent>
                 <IconContainer>
                     <img src={Icon} alt='msp430'></img>
                 </IconContainer>
-                {!matches ? (
-                    <Fragment>
-                        <NavListWrapper>
-                            <img
-                                onClick={() => isOpen((prev) => !prev)}
-                                src={HamMenu}
-                                alt='menu'
-                            />
-                        </NavListWrapper>
-                        <Fragment>
-                            {open ? (
-                                <OpenedMenu>{linksList}</OpenedMenu>
-                            ) : (
-                                <div style={{ display: 'none' }}></div>
-                            )}
-                        </Fragment>
-                    </Fragment>
+                {!matchesProjects && path && path.includes('/projects') ? (
+                    <Fragment>{projectsSmallScreenMenu}</Fragment>
                 ) : (
-                    <NavList>{linksList}</NavList>
+                    <Fragment>
+                        {!matches ? (
+                            <Fragment>{homeSmallScreenMenu}</Fragment>
+                        ) : (
+                            <NavList>{linksList}</NavList>
+                        )}
+                    </Fragment>
                 )}
             </NavbarContent>
         </NavbarContainer>

@@ -69,6 +69,9 @@ export const MarkdownContent = styled.div`
         * {
             font-family: 'Oxygen Mono' !important;
         }
+        @media only screen and (max-width: 1480px) {
+            width: 750px;
+        }
     }
 
     blockquote {
@@ -78,6 +81,10 @@ export const MarkdownContent = styled.div`
         background-color: #4a4a4a;
         margin-bottom: -10px;
         padding: 5px 15px 5px 15px;
+
+        @media only screen and (max-width: 1480px) {
+            width: 750px;
+        }
 
         p {
             color: #eee !important;

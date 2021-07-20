@@ -10,21 +10,47 @@ import '../styles/global.module.css'
 const App = styled.div`
     width: 100%;
     height: 100%;
+
+    .projects-list {
+        @media only screen and (max-width: 1480px) {
+            width: 25%;
+        }
+        @media only screen and (max-width: 1140px) {
+            display: none;
+        }
+    }
+
+    .project-content {
+        justify-content: center;
+        .content {
+            @media only screen and (max-width: 1480px) {
+                width: 750px;
+            }
+        }
+
+        @media only screen and (max-width: 1480px) {
+            margin: 0;
+            width: calc(100vw - 25%);
+        }
+        @media only screen and (max-width: 1140px) {
+            width: 100%;
+        }
+    }
 `
 
 const ProjectsContent = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 `
 
-function Projects({ data }) {
+function Projects({ data, path }) {
     let markdown = data.markdownRemark
     let posts = data.allMarkdownRemark.edges
 
     return (
         <App>
             <SEO title={markdown.frontmatter.title} />
-            <Navbar />
+            <Navbar path={path} />
             <ProjectsContent>
                 <ProjectsList posts={posts} />
                 <ProjectContent

@@ -9,7 +9,7 @@ import GitImage from '../../assets/git.png'
 
 function ProjectContent({ html, frontmatter }) {
     return (
-        <ProjectContainer>
+        <ProjectContainer className='project-content'>
             {frontmatter.slug === '/projects' ? (
                 <div
                     style={{
@@ -48,6 +48,7 @@ function ProjectContent({ html, frontmatter }) {
                 </div>
             ) : (
                 <MarkdownContent
+                    className='content'
                     dangerouslySetInnerHTML={{ __html: html }}
                 ></MarkdownContent>
             )}
