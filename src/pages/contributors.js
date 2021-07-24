@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Navbar from '../components/navbar/Navbar'
 import '../styles/global.module.css'
 
-const ContributersList = styled.div`
+const ContributorsList = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +24,7 @@ const ContributersList = styled.div`
     }
 `
 
-function Contributers({ data }) {
+function Contributors({ data }) {
     let blogMetaData = data.allMarkdownRemark.edges
     blogMetaData = blogMetaData.filter(function removeDefault(meta) {
         return meta.node.frontmatter.social !== null
@@ -33,8 +33,8 @@ function Contributers({ data }) {
     return (
         <div>
             <Navbar />
-            <ContributersList>
-                <h2 style={{ fontSize: 45 }}>Contributers</h2>
+            <ContributorsList>
+                <h2 style={{ fontSize: 45 }}>Contributors</h2>
                 <ul
                     style={{
                         listStyle: 'none',
@@ -58,7 +58,7 @@ function Contributers({ data }) {
                         </li>
                     ))}
                 </ul>
-            </ContributersList>
+            </ContributorsList>
         </div>
     )
 }
@@ -80,4 +80,4 @@ export const fetchData = graphql`
     }
 `
 
-export default Contributers
+export default Contributors

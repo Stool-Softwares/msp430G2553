@@ -34,7 +34,7 @@ function Navbar({ path, posts }) {
                 <Link to='/projects'>Projects</Link>
             </ListItem>
             <ListItem className='contri'>
-                <Link to='/contributers'>Contributers</Link>
+                <Link to='/contributors'>Contributors</Link>
             </ListItem>
             <ListItem className='about'>
                 <Link to='/about'>About</Link>
