@@ -6,6 +6,14 @@ module.exports = {
         siteUrl: 'http://msp430.edydee.xyz',
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingId: 'UA-168187292-2',
+                anonymize: true,
+                head: true,
+            },
+        },
         'gatsby-plugin-styled-components',
         {
             resolve: `gatsby-source-filesystem`,
@@ -32,14 +40,6 @@ module.exports = {
                         },
                     },
                 ],
-            },
-        },
-        {
-            resolve: `gatsby-plugin-google-gtag`,
-            options: {
-                trackingId: 'UA-168187292-2',
-                anonymize: true,
-                head: true,
             },
         },
     ],
