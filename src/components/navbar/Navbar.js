@@ -14,6 +14,7 @@ import { Link } from 'gatsby'
 import { useMediaQuery } from '@material-ui/core'
 import HamMenu from '../../assets/ham.png'
 
+//adding analytics
 function Navbar({ path, posts }) {
     const [open, isOpen] = useState(false)
     const matches = useMediaQuery('(min-width:840px)')
