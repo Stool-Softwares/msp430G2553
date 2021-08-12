@@ -7,11 +7,11 @@ module.exports = {
     },
     plugins: [
         {
-            resolve: `gatsby-plugin-google-gtag`,
+            resolve: `gatsby-plugin-google-analytics`,
             options: {
-                trackingId: 'UA-168187292-2',
-                anonymize: true,
+                trackingId: 'UA-204804641-1',
                 head: true,
+                anonymize: true,
             },
         },
         'gatsby-plugin-styled-components',
