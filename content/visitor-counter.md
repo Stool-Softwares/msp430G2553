@@ -25,7 +25,7 @@ The LDR sensor is placed at the door of the vaccination centre, if a person obst
 
 ### Working Model
 
-YT Video here
+<iframe width="860" height="515" src="https://www.youtube.com/embed/PQF0Ub9AGoE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Code
 

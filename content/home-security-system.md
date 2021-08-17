@@ -25,7 +25,7 @@ The sensors reads data from environment and give input to the MSP 430 lunchbox w
 
 ### Working Model
 
-YT Video here
+<iframe width="860" height="515" src="https://www.youtube.com/embed/2S8ED-4xA6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Code
 
@@ -37,11 +37,8 @@ YT Video here
 
 #include <inttypes.h>
 
-#include<stdio.h>
-
 #define CMD 0
 #define DATA 1
-#define AIN BIT0
 #define LCD_OUT P1OUT
 #define LCD_DIR P1DIR
 #define D4 BIT4
@@ -50,34 +47,69 @@ YT Video here
 #define D7 BIT7
 #define RS BIT2
 #define EN BIT3
-#define LED BIT3
-
+#define LDR BIT0
+#define EME BIT1
+#define FIR BIT5
+#define LED1 BIT4
+#define LED2 BIT3
+#define LED3 BIT2
+#define RST BIT0
+#define BZR BIT1
+/**
+ *@brief Delay function for producing delay in 0.1 ms increments
+ *@param t milliseconds to be delayed
+ *@return void
+ **/
 void delay(uint16_t t) {
     uint16_t i;
-    for (i = t; i > 0; i--) __delay_cycles(100);
+    for (i = t; i > 0; i--)
+        __delay_cycles(100);
 }
+/**
+ *@brief Function to pulse EN pin after data is written
+ *@return void
+ **/
 void pulseEN(void) {
-    LCD_OUT |= EN;
+    LCD_OUT |= EN; // Giving a falling edge at EN pin
     delay(1);
     LCD_OUT &= ~EN;
     delay(1);
 }
+/**
+ *@brief Function to write data/command to LCD
+ *@param value Value to be written to LED
+ *@param mode Mode -> Command or Data
+ *@return void
+ **/
 void lcd_write(uint8_t value, uint8_t mode) {
-    if (mode == CMD) LCD_OUT &= ~RS;
-    else LCD_OUT |= RS;
-    LCD_OUT = ((LCD_OUT & 0x0F) | (value & 0xF0));
+    if (mode == CMD)
+        LCD_OUT &= ~RS; // Set RS -> LOW for Command mode
+    else
+        LCD_OUT |= RS; // Set RS -> HIGH for Data mode
+    LCD_OUT = ((LCD_OUT & 0x0F) | (value & 0xF0)); // Write high nibble first
     pulseEN();
     delay(1);
-    LCD_OUT = ((LCD_OUT & 0x0F) | ((value << 4) & 0xF0));
+    LCD_OUT = ((LCD_OUT & 0x0F) | ((value << 4) & 0xF0)); // Write low nibble next
     pulseEN();
     delay(1);
 }
+/**
+ *@brief Function to print a string on LCD
+ *@param *s pointer to the character to be written.
+ *@return void
+ **/
 void lcd_print(char * s) {
     while ( * s) {
         lcd_write( * s, DATA);
         s++;
     }
 }
+/**
+ *@brief Function to move cursor to desired position on LCD
+ *@param row Row Cursor of the LCD
+ *@param col Column Cursor of the LCD
+ *@return void
+ **/
 void lcd_setCursor(uint8_t row, uint8_t col) {
     const uint8_t row_offsets[] = {
         0x00,
@@ -86,136 +118,131 @@ void lcd_setCursor(uint8_t row, uint8_t col) {
     lcd_write(0x80 | (col + row_offsets[row]), CMD);
     delay(1);
 }
-void lcd_printNumber(unsigned int num) {
-    char buf[3];
-    char * str = & buf[2];* str = '\0';
-    do {
-        unsigned long m = num;
-        num /= 10;
-        char c = (m - 10 * num) + '0';*--str = c;
-    } while (num);
-    lcd_print(str);
-}
+/**
+ *@brief Initialize LCD
+ **/
 void lcd_init() {
     LCD_DIR |= (D4 + D5 + D6 + D7 + RS + EN);
     LCD_OUT &= ~(D4 + D5 + D6 + D7 + RS + EN);
-    delay(150);
-    lcd_write(0x33, CMD);
-    delay(50);
-    lcd_write(0x32, CMD);
+    delay(150); // Wait for power up ( 15ms )
+    lcd_write(0x33, CMD); // Initialization Sequence 1
+    delay(50); // Wait ( 4.1 ms )
+    lcd_write(0x32, CMD); // Initialization Sequence 2
+    delay(1); // Wait ( 100 us )
+    // All subsequent commands take 40 us to execute, except clear & cursor return (1.64 ms)
+    lcd_write(0x28, CMD); // 4 bit mode, 2 line
     delay(1);
-    lcd_write(0x28, CMD);
+    lcd_write(0x0C, CMD); // Display ON, Cursor OFF, Blink OFF
     delay(1);
-    lcd_write(0x0C, CMD);
-    delay(1);
-    lcd_write(0x01, CMD);
+    lcd_write(0x01, CMD); // Clear screen
     delay(20);
-    lcd_write(0x06, CMD);
+    lcd_write(0x06, CMD); // Auto Increment Cursor
     delay(1);
-    lcd_setCursor(0, 0);
+    lcd_setCursor(0, 0); // Goto Row 1 Column 1
 }
-void register_settings_for_ADC10() {
-    ADC10AE0 |= AIN;
-    ADC10CTL1 = INCH_0;
-    ADC10CTL0 = SREF_0 + ADC10SHT_3 + ADC10ON;
-} /* USER DEFINED FUNCTIONS AND GLOBAL VARIABLE (defined by Aditya Shukla and Arushi Singh) | | | V */
-int minute_count = 0;
-int hour_count = 0;
-int counting = 0, flag = 0;
-int record_hour[7], record_minute[7];
-void reset_display(void) {
-    lcd_setCursor(0, 3);
-    lcd_print("Stopwatch");
-    lcd_setCursor(1, 5);
-    lcd_print("00:00");
-}
-void stopwatch(void) {
-    flag = 1;
-    if (minute_count < 10) lcd_setCursor(1, 9);
-    else lcd_setCursor(1, 8);
-    lcd_printNumber(hour_count++);
-    if (counting > 3) delay(30);
-    else if (counting > 5) delay(10);
-    else delay(10000);
-    if (minute_count == 60) {
-        lcd_setCursor(1, 8);
-        lcd_print("00");
-        minute_count = 0;
-        if (hour_count < 9) lcd_setCursor(1, 6);
-        else lcd_setCursor(1, 5);
-        lcd_printNumber(++hour_count);
-    }
-}
-void record_time(void) {
-    record_hour[counting] = hour_count;
-    record_minute[counting++] = minute_count;
-    minute_count = 0;
-    hour_count = 0;
-    flag = 0;
-}
+/*@brief entry point for the code*/
 void main(void) {
-    WDTCTL = WDTPW + WDTHOLD;
-    lcd_init();
-    register_settings_for_ADC10();
-    reset_display();
-    P2DIR |= BIT3;
-    P2OUT &= ~BIT3;
-    while (1) {
-        ADC10CTL0 |= ENC + ADC10SC;
-        while (ADC10CTL1 & ADC10BUSY);
-        float adc_value = 0;
-        adc_value = (ADC10MEM) * (99.00) / (1023.00);
-        if (adc_value > 15.0 && flag == 1) {
-            P2OUT &= ~BIT3;
-            record_time();
-            reset_display();
-        } else if (adc_value > 15.0 && flag == 0) {
-            P2OUT &= ~BIT3;
-            reset_display();
-        } else if (adc_value <= 15.0) {
-            P2OUT |= BIT3;
-            stopwatch();
-        }
-        if (counting == 7) break;
-    }
-    while (1) {
-        int i;
-        for (i = 0; i < 6; i += 2) {
-            lcd_setCursor(0, 0);
-            lcd_print(" ");
-            lcd_setCursor(1, 0);
-            lcd_print(" ");
-            lcd_setCursor(0, 1);
-            lcd_print("PLoss");
-            lcd_printNumber(i + 1);
-            lcd_setCursor(1, 1);
-            lcd_printNumber(record_hour[i]);
-            lcd_print(":");
-            if (record_minute[i] - 1 < 10) lcd_print("0");
-            lcd_printNumber(record_minute[i] - 1);
-            lcd_setCursor(0, 9);
-            lcd_print("PLoss");
-            lcd_printNumber(i + 2);
-            lcd_setCursor(1, 9);
-            lcd_printNumber(record_hour[i + 1]);
-            lcd_print(":");
-            if (record_minute[i + 1] - 1 < 10) lcd_print("0");
-            lcd_printNumber(record_minute[i + 1] - 1);
-            delay(25000);
-        }
-        lcd_setCursor(0, 0);
-        lcd_print(" ");
+    WDTCTL = WDTPW + WDTHOLD; //! Stop Watchdog (Not recommended for code in production and devices working in
+    field)
+P1DIR &= ~LDR;
+P2DIR |= BZR;
+P2DIR &= ~FIR;
+P1DIR &= ~EME;
+P2DIR &= ~RST;
+P2DIR |= LED1;
+P2DIR |= LED2;
+P2DIR |= LED3;
+P2OUT &= ~BZR;
+lcd_init();
+P2OUT &= ~LED1;
+P2OUT &= ~LED2;
+P2OUT &= ~LED3;
+lcd_write(0x01, CMD);
+delay(200);
+lcd_setCursor(0, 2);
+lcd_print("Welcome to");
+lcd_setCursor(1, 0);
+lcd_print("Security System");
+while (1) {
+    if (!(P1IN & LDR)) {
+        delay(20); // Wait 20ms to debounce
+        P2OUT &= ~BZR;
+        P2OUT &= ~LED1;
+        P2OUT &= ~LED2;
+        P2OUT &= ~LED3;
+        lcd_write(0x01, CMD);
+        delay(20);
+        lcd_setCursor(0, 2);
+        lcd_print("Welcome to");
         lcd_setCursor(1, 0);
-        lcd_print(" ");
-        lcd_setCursor(0, 1);
-        lcd_print("PLoss");
-        lcd_printNumber(7);
-        lcd_setCursor(1, 1);
-        lcd_printNumber(record_hour[6]);
-        lcd_print(":");
-        if (record_minute[i] - 1 < 10) lcd_print("0");
-        lcd_printNumber(record_minute[6] - 1);
-        delay(25000);
+        lcd_print("Security System");
+        delay(200);
+    } else {
+        lcd_setCursor(0, 2);
+        lcd_print("intruder!!!");
+        lcd_setCursor(1, 2);
+        lcd_print("calling 100");
+        while ((P2IN & RST)) {
+            P2OUT |= BZR;
+            P2OUT |= LED1;
+            P2OUT |= LED2;
+            P2OUT &= ~LED3;
+            delay(2000);
+            P2OUT &= ~BZR;
+            P2OUT &= ~LED1;
+            P2OUT |= LED3;
+            delay(2000);
+        }
     }
+    if (!(P1IN & EME)) {
+        delay(200);
+        while (P2IN & RST) {
+            lcd_write(0x01, CMD);
+            delay(20);
+            lcd_print("Emergancy ");
+            lcd_setCursor(1, 2);
+            lcd_print("calling 108");
+            delay(200);
+        }
+        lcd_write(0x01, CMD);
+        delay(20);
+        lcd_setCursor(0, 2);
+        lcd_print("Welcome to");
+        lcd_setCursor(1, 0);
+        lcd_print("Security System");
+    }
+    if (!(P2IN & FIR)) {
+        delay(20); // Wait 20ms to debounce
+        P2OUT &= ~BZR;
+        P2OUT &= ~LED1;
+        P2OUT &= ~LED2;
+        P2OUT &= ~LED3;
+        lcd_write(0x01, CMD);
+        delay(20);
+        lcd_setCursor(0, 2);
+        lcd_print("Welcome to");
+        lcd_setCursor(1, 0);
+        lcd_print("Security System");
+        delay(200);
+    } else {
+        lcd_write(0x01, CMD);
+        delay(20);
+        lcd_setCursor(0, 2);
+        lcd_print("Fire!!!");
+        lcd_setCursor(1, 2);
+        lcd_print("calling 101");
+        while ((P2IN & RST)) {
+            P2OUT |= BZR;
+            P2OUT |= LED1;
+            P2OUT |= LED2;
+            P2OUT &= ~LED3;
+            delay(2000);
+            P2OUT &= ~BZR;
+            P2OUT &= ~LED1;
+            P2OUT |= LED3;
+            delay(2000);
+        }
+    }
+}
 }
 ```

@@ -25,7 +25,7 @@ A power cut has been a consequential issue throughout this nation. Our device me
 
 ### Working Model
 
-YT Video here
+<iframe width="860" height="515" src="https://www.youtube.com/embed/2S8ED-4xA6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Code
 

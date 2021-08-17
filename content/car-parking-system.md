@@ -2,22 +2,22 @@
 title: 'Car Parking System'
 slug: '/projects/car-parking-system'
 date: '2021-07-16'
-author: 'Aditya Raj Kumawat'
-social: 'https://instagram.com/edydee'
-socialName: 'edydee'
+author: 'Aditya Raj Kumawat, Harsh Khandelwal'
+social: 'https://instagram.com/edydee | harshkhandelwal@jklu.edu.in'
+socialName: 'edydee, harsh'
 ---
 
 ## Car Parking System
 
-(#aadityarajkumawat)
+(#aadityarajkumawat, #harsh)
 
 ---
 
-car parking systems is a electro-mechnical system which is very often used in malls, apartments, buildings etc, for managing vehicles and their security, this project specifically focuses on management of vehicles, by keeping track of data about number of cars.
+Design and implement a circuit using MSP430G2553 and sensors (IR), to detect when a car enters and exits the parking lot and display the parking lot information like number of cars parked, numbers of cars entered and so on, on LCD display.
 
 ### Working
 
-Car parking systems is a electro-mechnical system which is very often used in malls, apartments, buildings etc, for managing vehicles and their security, this project specifically focuses on management of vehicles, by keeping track of data about number of cars. Car parking systems is a electro-mechnical system which is very often used in malls, apartments, buildings etc, for managing vehicles and their security, this project specifically focuses on management of vehicles, by keeping track of data about number of cars.
+The model takes in inputs from two IR sensors, one is used to detect the number of cars entering the parking lot while the other sensor is used to detect the number of cars leaving the parking lot. The program loaded on MSP430 keeps track of the state of parking lot by keeping the number of cars currently present, total number of cars that have entered, total number of cars that have exited and it also keeps track that no car will be allowed once the maximum capacity of parking lot is reached.
 
 ### Circuit diagram
 
@@ -25,7 +25,7 @@ Car parking systems is a electro-mechnical system which is very often used in ma
 
 ### Working Model
 
-YT Video here
+<iframe width="860" height="515" src="https://www.youtube.com/embed/FyNmJJnIq9c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Code
 

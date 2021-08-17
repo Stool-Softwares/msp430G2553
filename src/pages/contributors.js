@@ -26,9 +26,22 @@ const ContributorsList = styled.div`
 
 function Contributors({ data }) {
     let blogMetaData = data.allMarkdownRemark.edges
+
     blogMetaData = blogMetaData.filter(function removeDefault(meta) {
         return meta.node.frontmatter.social !== null
     })
+
+    function splitName(socialNames) {
+        if (!socialNames.includes(', ')) return [socialNames, '']
+        let names = socialNames.split(', ')
+        return names
+    }
+
+    function splitSocials(socialLinks) {
+        if (!socialLinks.includes(' | ')) return [socialLinks, '']
+        let links = socialLinks.split(' | ')
+        return links
+    }
 
     return (
         <div>
@@ -43,16 +56,44 @@ function Contributors({ data }) {
                     }}
                 >
                     {blogMetaData.map((edge) => (
-                        <li style={{ color: '#5d5d5d', fontSize: 20 }}>
-                            {edge.node.frontmatter.author}(
+                        <li
+                            style={{
+                                color: '#5d5d5d',
+                                fontSize: 20,
+                                marginBottom: '20px',
+                            }}
+                        >
+                            {edge.node.frontmatter.author} (
                             <a
                                 style={{
                                     textDecoration: 'none',
                                     color: '#094aa9',
                                 }}
-                                href={edge.node.frontmatter.social}
+                                href={
+                                    splitSocials(
+                                        edge.node.frontmatter.social
+                                    )[0]
+                                }
+                                target='_blank'
                             >
-                                @{edge.node.frontmatter.socialName}
+                                @
+                                {splitName(edge.node.frontmatter.socialName)[0]}
+                                ,
+                            </a>
+                            <a
+                                style={{
+                                    textDecoration: 'none',
+                                    color: '#094aa9',
+                                }}
+                                href={
+                                    splitSocials(
+                                        edge.node.frontmatter.social
+                                    )[1]
+                                }
+                                target='_blank'
+                            >
+                                @
+                                {splitName(edge.node.frontmatter.socialName)[1]}
                             </a>
                             )
                         </li>
