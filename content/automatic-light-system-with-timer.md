@@ -32,11 +32,9 @@ A power cut has been a consequential issue throughout this nation. Our device me
 > Get complete project at [@Stool Softwares](https://github.com/Stool-Softwares)
 
 ```c
-// car-parking-system.c
+// automatic-light-system-with-timer.c
 #include <msp430.h>
-
 #include <inttypes.h>
-
 #include<stdio.h>
 
 #define CMD 0

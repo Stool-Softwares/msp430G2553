@@ -69,11 +69,6 @@ function Contributors({ data }) {
                                     textDecoration: 'none',
                                     color: '#094aa9',
                                 }}
-                                href={
-                                    splitSocials(
-                                        edge.node.frontmatter.social
-                                    )[0]
-                                }
                                 target='_blank'
                             >
                                 @
@@ -85,11 +80,6 @@ function Contributors({ data }) {
                                     textDecoration: 'none',
                                     color: '#094aa9',
                                 }}
-                                href={
-                                    splitSocials(
-                                        edge.node.frontmatter.social
-                                    )[1]
-                                }
                                 target='_blank'
                             >
                                 @

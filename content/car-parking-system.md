@@ -9,7 +9,7 @@ socialName: 'edydee, harsh'
 
 ## Car Parking System
 
-(#aadityarajkumawat, #harsh)
+(#aadityarajkumawat, #harshkhandelwal)
 
 ---
 

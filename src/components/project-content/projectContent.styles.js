@@ -110,6 +110,13 @@ export const MarkdownContent = styled.div`
         }
     }
 
+    iframe,
+    html,
+    body,
+    #player {
+        width: 100%;
+    }
+
     pre {
         width: 900px;
         border-top-left-radius: 0;
@@ -132,6 +139,7 @@ export const MarkdownContent = styled.div`
     blockquote {
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+        margin-bottom: 0px !important;
         width: 900px;
         background-color: #4a4a4a;
         margin-bottom: -10px;

@@ -7,9 +7,9 @@ social: 'https://www.instagram.com/renixonised | https://instagram.com/kaustubh7
 socialName: 'namish khandelwal, kaustubh singh'
 ---
 
-## Visitor Counter
+## Home Security System
 
-(#namish khandelwal, #kaustubh singh)
+(#namishkhandelwal, #kaustubhsingh)
 
 ---
 
@@ -25,14 +25,14 @@ The sensors reads data from environment and give input to the MSP 430 lunchbox w
 
 ### Working Model
 
-<iframe width="860" height="515" src="https://www.youtube.com/embed/2S8ED-4xA6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="860" height="515" src="https://www.youtube.com/embed/wwZbwZj7BJ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Code
 
 > Get complete project at [@Stool Softwares](https://github.com/Stool-Softwares)
 
 ```c
-// car-parking-system.c
+// home-security-system.c
 #include <msp430.h>
 
 #include <inttypes.h>
